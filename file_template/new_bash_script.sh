@@ -21,6 +21,8 @@ trap finish EXIT
 date=`date +%Y/%m/%d`
 year=`date +%Y`
 username=`whoami`
+defaultfilename="${username}_new_bash.sh"
+filedir="${1-$defaultfilename}"
 printf "#!/usr/bin/env bash\n\
 # Created by ${username} on ${date}\n\
 # © ${year} `echo ${username} | awk '{print toupper($0)}'` All RIGHTS RESERVED.\n\n\
@@ -36,5 +38,5 @@ function finish {\n\
     echo \"cleaning up\"\n\
 }\n\n\
 trap finish EXIT\n\n\
-# script here\n" | cat -  > $1 
-chmod 755 $1
+# script here\n" | cat -  > $filedir
+chmod 755 $filedir
