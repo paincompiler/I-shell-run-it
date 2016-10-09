@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Created by paincompiler on 2016/08/31
+# Created by paincompiler on 2016/10/09
 # © 2016 PAINCOMPILER All RIGHTS RESERVED.
 
 ##########settings##########
@@ -10,6 +10,14 @@ set -o pipefail
 set -o xtrace
 ##########settings##########
 
+function finish {
+    # cleanup code here
+    echo "cleaning up"
+}
+
+trap finish EXIT
+
+# script here
 echo -n "Choose the source raw disk"
 if command -v diskutil >/dev/null 2>&1; then
     diskutil list
