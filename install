@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Created by paincompiler on 2016/10/13
+# © 2016 PAINCOMPILER All RIGHTS RESERVED.
+
+##########settings##########
+set -o errexit
+set -o errtrace
+set -o nounset
+set -o pipefail
+##########settings##########
+
+# script here
+target_dir="$HOME/.isri-$(git rev-parse HEAD)"
+mkdir -p $target_dir
+cp **/*.sh $target_dir
+cd $target_dir
+for f in ./*.sh;
+do mv -v $f "./isri_$(echo $(basename $f) | cut -f 1 -d '.')";
+done
+export "PATH=$target_dir:$PATH"
+printf '\e[1;34m%-6s\e[m\n' "Done!"
+printf '\t\e[1;34m%-6s\e[m\n' "Please put dir "$target_dir" into your \$PATH"
